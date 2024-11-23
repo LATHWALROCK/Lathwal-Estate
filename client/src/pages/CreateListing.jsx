@@ -30,7 +30,7 @@ export default function CreateListing() {
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   console.log(formData);
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
@@ -130,7 +130,7 @@ export default function CreateListing() {
         return setError('You must upload at least one image');
       if (+formData.regularPrice < +formData.discountPrice)
         return setError('Discount price must be lower than regular price');
-      setLoading(true);
+      // setLoading(true);
       setError(false);
       const res = await fetch('/api/listing/create', {
         method: 'POST',
@@ -143,14 +143,14 @@ export default function CreateListing() {
         }),
       });
       const data = await res.json();
-      setLoading(false);
+      // setLoading(false);
       if (data.success === false) {
         setError(data.message);
       }
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
-      setLoading(false);
+      // setLoading(false);
     }
   };
   return (
@@ -358,10 +358,10 @@ export default function CreateListing() {
               </div>
             ))}
           <button
-            disabled={loading || uploading}
+            disabled={uploading}
             className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
           >
-            {loading ? 'Creating...' : 'Create listing'}
+            Create Listing
           </button>
           {error && <p className='text-red-700 text-sm'>{error}</p>}
         </div>
