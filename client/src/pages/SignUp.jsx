@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({
@@ -15,7 +15,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      // setLoading(true);
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
@@ -30,7 +30,7 @@ export default function SignUp() {
         setError(data.message);
         return;
       }
-      setLoading(false);
+      // setLoading(false);
       setError(null);
       navigate('/sign-in');
     } catch (error) {
@@ -65,10 +65,10 @@ export default function SignUp() {
         />
 
         <button
-          disabled={loading}
+          // disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
         >
-          {loading ? 'Loading...' : 'Sign Up'}
+          Sign Up
         </button>
       </form>
       <div className='flex gap-2 mt-5'>
